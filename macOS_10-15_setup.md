@@ -25,6 +25,21 @@ make clean
 make
 ```
 
+### Create StandfordCPPLib Directory
+
+The easiest way to make use of the newly-compiled Stanford helper library is to make a copy of it and rearrange it intothe equivalent file structure of the `StanfordCPPLib` directory that comes bundled with the assignments. Then it is simply a case of replacing the bundled `StanfordCPPLib` directory with the new one. This way, there's no need to re-point XCode to the libraries, as the project file is already set up to look for the `StanfordCPPLib` directory.
+
+From having just run `make`:
+
+```
+cd ..
+cp -R cpplib StanfordCPPLib
+cd StanfordCPPLib
+mv include/* .
+mv lib/libStanfordCPPLib.a .
+```
+
+
 Download an Assignment
 ----------------------
 
@@ -38,7 +53,17 @@ Open `Assignment1-xcode/1 - Consecutive Heads/Consecutive Heads.xcodeproj`
 Hit the Play button to Build and Run, you should get this error:
 `The linked library 'libStanfordCPPLib.a' is missing one or more architectures required by this target: x86_64.`. I think the .a file is compiled for a 32-bit Intel architecture.
 
-Add the Stanford Library
+### Add the Stanford Library
+
+Assuming your newly-compiled Stanford library is in the same place as where you keep your Assignment directories:
+
+```
+cd Assignment1-xcode/1 - Consecutive Heads/StanfordCPPLib
+rm -rf *
+cp -R ../../StanfordCPPLib .
+```
+
+Other Ways to Add the Stanford Library
 ------------------------
 
 Go to the Project Navigator, open Resources folder, Right-click libStanfordCPPLib.a > Show File Inspector
