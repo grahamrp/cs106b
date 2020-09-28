@@ -24,6 +24,7 @@ When I ran the built-in tests with `./TestStanfordCPPLib` the `getInteger()` fun
 make clean
 make
 ```
+If you get an error compiling `unittest.cpp` complaining about redefining `sin`, edit `unittest.cpp` and replace `sin` with `str_in` to prevent the namespace clash.
 
 ### Create StandfordCPPLib Directory
 
@@ -37,6 +38,7 @@ cp -R cpplib StanfordCPPLib
 cd StanfordCPPLib
 mv include/* .
 mv lib/libStanfordCPPLib.a .
+mv java/spl.jar .
 ```
 
 
