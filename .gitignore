@@ -1,2 +1,4 @@
 **.xcbuild
+**/build/
+**/UserInterfaceState.xcuserstate
 

@@ -32,7 +32,7 @@ int main() {
         result = flip();
         n_flips++;
         cout << result << endl;
-        if (result == "Head") n_heads++;
+        if (result == "Head") n_heads++; else n_heads = 0;
         if (n_heads >= 3) break;
     }
     cout << "It took " << n_flips << " flips to get 3 consecutive heads." << endl;
