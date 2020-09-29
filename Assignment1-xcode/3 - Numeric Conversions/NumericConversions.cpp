@@ -14,7 +14,6 @@
 
 using namespace std;
 
-
 /* Function prototypes */
 
 int stringToIntImpl(string str, int exponent);

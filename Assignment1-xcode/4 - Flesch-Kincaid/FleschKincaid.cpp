@@ -44,9 +44,10 @@ int main() {
     string next_token;
     while(scanner.hasMoreTokens()) {
         next_token = scanner.nextToken();
+       // cout << next_token << " sentence:" << isEndOfSentence(next_token) << " isWord:" <<isWord(next_token) << " syllables:" << syllables(next_token) << endl;
         n_words += isWord(next_token)? 1 : 0;
         n_sentences += isEndOfSentence(next_token)? 1 : 0;
-        n_syllables += syllables(next_token);
+        n_syllables += isWord(next_token)? syllables(next_token) : 0;
     }
     
     cout << "Total syllables: " << n_syllables << endl;
@@ -85,7 +86,7 @@ bool isWord(string token) {
 
 bool isEndOfSentence(string token) {
     char t0 = token[0];
-    return ((t0 == '.' || t0 == '?' || t0 == '!'))? true : false;
+    return (t0 == '.' || t0 == '?' || t0 == '!');
 }
 
 int syllables(string token) {
@@ -124,7 +125,6 @@ bool isVowel(char c) {
     is_vowel['u'] = true;
     is_vowel['Y'] = true;
     is_vowel['y'] = true;
-
 
     return is_vowel[c];
 }
