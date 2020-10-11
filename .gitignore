@@ -67,3 +67,6 @@ DerivedData/
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,macos
 
+CS106BX-Reader.pdf
+cpplib/
+XVim2/

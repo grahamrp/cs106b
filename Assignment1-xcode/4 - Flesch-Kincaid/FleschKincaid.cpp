@@ -56,11 +56,11 @@ int main() {
     cout << "Flesch-Kincaid Score: " << fleschKincaidScore(n_syllables, n_words, n_sentences) << endl;
     
     cout << endl;
-    test_syllables("apple", 1);
-    test_syllables("pear", 1);
-    test_syllables("banana", 3);
-    test_syllables("bitches", 2);
-    test_syllables("me", 1);
+    test_syllables("haikus", 1);
+    test_syllables("are", 1);
+    test_syllables("concise", 3);
+    test_syllables("but", 2);
+    test_syllables("they", 1);
     test_syllables("deduce", 2);
     test_syllables("peach", 1);
 
