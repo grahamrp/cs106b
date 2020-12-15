@@ -43,8 +43,11 @@ Vector<string> findProteins(string& rna, Map<string, string> codons) {
             
     Vector<string> proteins;
     long currentIndex = 0;
-    while (currentIndex < rna.size()) {
+    while (true) {
         readUntilStartCodon(rna,  currentIndex);
+        if (currentIndex == string::npos) {
+          break;
+        }
         proteins.add(transcribe(rna, currentIndex, codons));
     }
     
@@ -94,25 +97,3 @@ Map<string, string> getCodons() {
     codons["UGA"] = "stop";
     return codons;
 }
-//
-//TEST_CASE("findProteins") {
-//    Map<string, string> codons = getCodons();
-//    string rna = "GCAUGGAUUAAUAUGAGACGACUAAUAGGAUAGUUACAACCCUUAUGUCACCGCCUUGA";
-//    REQUIRE( equals(findProteins(rna, codons),
-//                    toVector(vector<string> {
-//        "methionine, aspartic acid",
-//        "methionine, arginine, arginine, leucine, isoleucine, glycine",
-//        "methionine, serine, proline, proline"})));
-//
-//}
-//
-//TEST_CASE("getEncodingSequences") {
-//    Map<string, string> codons = getCodons();
-//    string rna = "GCAUGGAUUAAUAUGAGACGACUAAUAGGAUAGUUACAACCCUUAUGUCACCGCCUUGA";
-//    REQUIRE( equals(getEncodingSequences(rna, codons),
-//                    toVector(vector<string> {
-//        "AUGGAUUAA",
-//        "AUGAGACGACUAAUAGGAUAG",
-//        "AUGUCACCGCCUUGA"})));
-//
-//}
