@@ -7,7 +7,7 @@
 #include <iostream>
 #include "foreach.h"
 #include "vector.h"
-#include "lexicon.h"
+#include "set.h"
 using namespace std;
 
 // drop a letter from a string at a particular index
@@ -28,17 +28,51 @@ Vector<string> permutations(string soFar, string rest) {
     return out;
 }
 
-bool findAnagram(string letters, Lexicon& english, Vector<string>& words);
+Vector<string> subsets(string soFar, string rest) {
+    Vector<string> out;
+    if (rest.empty()) {
+        out += soFar;
+    } else {
+        
+        out += subsets(soFar + rest[0], rest.substr(1));
+        out += subsets(soFar, rest.substr(1));
+    }
+    return out;
+}
+
+bool findAnagramRec(string candidate, string rest, Vector<string>& words, Set<string>& english) {
+    
+    if (english.contains(candidate)) {
+        if (rest == "" || findAnagramRec("", rest, words, english)) {
+            words.add(candidate);
+            return true;
+        }
+    }
+    for (int i = 0; i < rest.length(); i++) {
+        if (findAnagramRec(candidate + rest[i], drop(rest, i), words, english)) return true;
+    }
+    
+    return false;
+}
+
+bool findAnagram(string letters, Set<string>& english, Vector<string>& words) {
+    return findAnagramRec("", letters, words, english);
+}
 
 int main() {
-    cout << permutations("", "ABC") << endl;;
+    Set<string> english;
+    english += "the", "mona", "lisa";
+    Vector<string> words;
+    cout << findAnagram("thealis", english, words) << endl;
+    cout << words << endl;
     return 0;
 
 }
 
 /*
- bool findAnagram(string letters, Lexicon& english,
-                               Vector<string>& words);
+ it's a subsets problem?
+ 
+ base case: are all the letters allocated to the vector?
  
  
  Strip spaces
